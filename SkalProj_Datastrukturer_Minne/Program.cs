@@ -58,9 +58,9 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
-        /// <summary>
+       
+
         /// Examines the datastructure List
-        /// </summary>
         static void ExamineList()
         {
                 void Display(LinkedList<string> nm, string test)
@@ -141,62 +141,63 @@ namespace SkalProj_Datastrukturer_Minne
         Console.ReadKey();
     }
 }
-    }
+    
 
 
 /// Examines the datastructure Stack
 
-public void ExamineStack()
- Stack<string> ica = new Stack<string>();
-ica.Push("Kalle");
-ica.Push("Greta");
-ica.Push("Stina");
-ica.Push("Olle");
-
-foreach (string namn in ica)
+void ExamineStack();
 {
-    Console.WriteLine(namn);
+    Stack<string> ica = new Stack<string>();
+    ica.Push("Kalle");
+    ica.Push("Greta");
+    ica.Push("Stina");
+    ica.Push("Olle");
+
+    foreach (string namn in ica)
+    {
+        Console.WriteLine(namn);
+    }
+    // Create a copy of the stack, using the ToArray method and the
+    // constructor that accepts an IEnumerable<T>.
+
+    Stack<string> kö2 = new Stack<string>(ica.ToArray());
+
+    Console.WriteLine("\n Det är en kopia på kö :");
+    foreach (string n in kö2)
+
+        Console.WriteLine(n);
+
+
+    Console.WriteLine("\n Ta bort det siste från kön '{0}'", ica.Pop());
+    Console.WriteLine(" Näst sista i kön är : {0}",
+        ica.Peek());
+    Console.WriteLine("'{0}' lämnar kön ", ica.Pop());
+
+
+    // Create an array twice the size of the stack and copy the
+    // elements of the stack, starting at the middle of the
+    // array.
+    string[] array2 = new string[ica.Count * 2];
+    ica.CopyTo(array2, ica.Count);
+
+    // Create a second stack, using the constructor that accepts an
+    // IEnumerable(Of T).
+    Stack<string> stack3 = new Stack<string>(array2);
+
+    Console.WriteLine("\nFöljande finns i kö nu :");
+    foreach (string n in stack3)
+    {
+        Console.WriteLine(n);
+    }
+
+    Console.WriteLine("\n I kö finns (\"Greta\") = {0}",
+        kö2.Contains("Greta"));
+
+    Console.WriteLine("\nstack2.Clear()");
+    kö2.Clear();
+    Console.WriteLine("\nstack2.Count = {0}", kö2.Count);
 }
-// Create a copy of the stack, using the ToArray method and the
-// constructor that accepts an IEnumerable<T>.
-
-Stack<string> kö2 = new Stack<string>(ica.ToArray());
-
-Console.WriteLine("\n Det är en kopia på kö :");
-foreach (string n in kö2)
-
-    Console.WriteLine(n);
-
-
-Console.WriteLine("\n Ta bort det siste från kön '{0}'", ica.Pop());
-Console.WriteLine(" Näst sista i kön är : {0}",
-    ica.Peek());
-Console.WriteLine("'{0}' lämnar kön ", ica.Pop());
-
-
-// Create an array twice the size of the stack and copy the
-// elements of the stack, starting at the middle of the
-// array.
-string[] array2 = new string[ica.Count * 2];
-ica.CopyTo(array2, ica.Count);
-
-// Create a second stack, using the constructor that accepts an
-// IEnumerable(Of T).
-Stack<string> stack3 = new Stack<string>(array2);
-
-Console.WriteLine("\nFöljande finns i kö nu :");
-foreach (string n in stack3)
-{
-    Console.WriteLine(n);
-}
-
-Console.WriteLine("\n I kö finns (\"Greta\") = {0}",
-    kö2.Contains("Greta"));
-
-Console.WriteLine("\nstack2.Clear()");
-kö2.Clear();
-Console.WriteLine("\nstack2.Count = {0}", kö2.Count);
-
 
 
 
@@ -213,6 +214,6 @@ static void CheckParanthesis()
 
         }
 
-    }
-}
+    
+
 
