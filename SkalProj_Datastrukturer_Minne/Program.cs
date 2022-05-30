@@ -1,5 +1,6 @@
-﻿using System;
-
+﻿
+using System;
+using System.Collections.Generic;
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
@@ -62,49 +63,147 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineList()
         {
-            /*
-             * Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch statement with cases '+' and '-'
-             * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
-             * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
-             * In both cases, look at the count and capacity of the list
-             * As a default case, tell them to use only + or -
-             * Below you can see some inspirational code to begin working.
-            */
+                void Display(LinkedList<string> nm, string test)
+                {
+                    Console.WriteLine(test);
+                    foreach (string name in nm)
+                    {
+                        Console.Write(name + " ");
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine();
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
 
-            //switch(nav){...}
+                }
+                // Create the link list.
+                string[] names =
+                    { "Adam", "Anna", "Lena", "Vasi", "Axel", "Olle" };
+                LinkedList<string> namn = new LinkedList<string>(names);
+                Display(namn, "Finns i List nu:");
+                bool done = false;
+                char v;
+                do
+                {
+                    Console.WriteLine("Lägg till namn ange + ta bort namn - ");
+                    v = Convert.ToChar(Console.ReadLine());
+
+
+
+                    switch (v)
+                    {
+                        case '+':
+
+                            Console.WriteLine("Ange ett namn. ");
+                            string? input = Console.ReadLine();
+                            namn.AddFirst($"{input}");
+                            Display(namn, "Namn som finns i listan nu ");
+                            break;
+
+                        case '-':
+
+                            Console.WriteLine("Välj vilket namn skall tas bort från lista? ");
+                            string? current = Console.ReadLine();
+                            namn.Remove($"{current}");
+                            Display(namn, "har tagits bort namnet  " + (current));
+                            break;
+
+                    }
+                } while (!done);
+            }
         }
 
-        /// <summary>
-        /// Examines the datastructure Queue
-        /// </summary>
-        static void ExamineQueue()
-        {
-            /*
-             * Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch with cases to enqueue items or dequeue items
-             * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
-            */
-        }
 
-        /// <summary>
-        /// Examines the datastructure Stack
-        /// </summary>
-        static void ExamineStack()
-        {
-            /*
-             * Loop this method until the user inputs something to exit to main menue.
-             * Create a switch with cases to push or pop items
-             * Make sure to look at the stack after pushing and and poping to see how it behaves
-            */
-        }
 
-        static void CheckParanthesis()
+    void ExamineQueue()
+    {
+        Queue<string> q = new Queue<string>();
+
+        q.Enqueue("Kalle");
+        q.Enqueue("Greta");
+        q.Enqueue("Stina");
+
+
+        Console.WriteLine("Finns i kö nu: ");
+        foreach (string c in q) Console.Write(c + " ");
+
+        Console.WriteLine();
+        q.Enqueue("Olle");
+        Console.WriteLine("Finns i kö nu: ");
+        foreach (string c in q) Console.Write(c + " ");
+
+        Console.WriteLine();
+        Console.WriteLine(" Lämnar kö ");
+        string s = (string)q.Dequeue();
+        Console.WriteLine("Har fått hjälp: {0}", s);
+        s = (string)q.Dequeue();
+        Console.WriteLine("Har fått hjälp: {0}", s);
+
+        Console.ReadKey();
+    }
+}
+    }
+
+
+/// Examines the datastructure Stack
+
+public void ExamineStack()
+ Stack<string> ica = new Stack<string>();
+ica.Push("Kalle");
+ica.Push("Greta");
+ica.Push("Stina");
+ica.Push("Olle");
+
+foreach (string namn in ica)
+{
+    Console.WriteLine(namn);
+}
+// Create a copy of the stack, using the ToArray method and the
+// constructor that accepts an IEnumerable<T>.
+
+Stack<string> kö2 = new Stack<string>(ica.ToArray());
+
+Console.WriteLine("\n Det är en kopia på kö :");
+foreach (string n in kö2)
+
+    Console.WriteLine(n);
+
+
+Console.WriteLine("\n Ta bort det siste från kön '{0}'", ica.Pop());
+Console.WriteLine(" Näst sista i kön är : {0}",
+    ica.Peek());
+Console.WriteLine("'{0}' lämnar kön ", ica.Pop());
+
+
+// Create an array twice the size of the stack and copy the
+// elements of the stack, starting at the middle of the
+// array.
+string[] array2 = new string[ica.Count * 2];
+ica.CopyTo(array2, ica.Count);
+
+// Create a second stack, using the constructor that accepts an
+// IEnumerable(Of T).
+Stack<string> stack3 = new Stack<string>(array2);
+
+Console.WriteLine("\nFöljande finns i kö nu :");
+foreach (string n in stack3)
+{
+    Console.WriteLine(n);
+}
+
+Console.WriteLine("\n I kö finns (\"Greta\") = {0}",
+    kö2.Contains("Greta"));
+
+Console.WriteLine("\nstack2.Clear()");
+kö2.Clear();
+Console.WriteLine("\nstack2.Count = {0}", kö2.Count);
+
+
+
+
+
+
+
+static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
