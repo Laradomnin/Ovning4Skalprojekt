@@ -114,7 +114,7 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-    void ExamineQueue()
+    static void ExamineQueue()
     {
         Queue<string> q = new Queue<string>();
 
